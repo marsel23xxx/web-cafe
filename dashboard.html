@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#17231e" />
+  <title>Nusa Brew — Visitor Dashboard</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="assets/dashboard.js" defer></script>
+</head>
+<body class="dashboard-body">
+  <header class="dashboard-header">
+    <div class="container dashboard-nav">
+      <a class="brand brand-dashboard" href="index.html">
+        <span class="brand-mark">NB</span>
+        <span>Nusa Brew</span>
+      </a>
+      <div class="dashboard-actions">
+        <span class="live-indicator"><i></i> Analytics</span>
+        <button class="button button-small button-outline" id="refresh-button" type="button">Refresh</button>
+        <button class="icon-button" id="logout-button" type="button" aria-label="Log out" title="Log out">↗</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="container">
+      <section class="dashboard-title">
+        <div>
+          <p class="eyebrow">Website performance</p>
+          <h1>Visitor overview</h1>
+          <p>Privacy-friendly traffic data from the Nusa Brew landing page.</p>
+        </div>
+        <div class="last-updated">Last updated<br /><strong id="last-updated">—</strong></div>
+      </section>
+
+      <div class="dashboard-notice" id="dashboard-notice" hidden></div>
+
+      <section class="stats-grid" aria-label="Visitor summary">
+        <article class="stat-card">
+          <span>Total visits</span>
+          <strong id="total-visits">—</strong>
+          <small>All recorded visits</small>
+        </article>
+        <article class="stat-card">
+          <span>Today</span>
+          <strong id="today-visits">—</strong>
+          <small id="today-label">Current day</small>
+        </article>
+        <article class="stat-card">
+          <span>Last 7 days</span>
+          <strong id="week-visits">—</strong>
+          <small>Rolling seven-day total</small>
+        </article>
+        <article class="stat-card stat-accent">
+          <span>Daily average</span>
+          <strong id="daily-average">—</strong>
+          <small>Across active days</small>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="dashboard-panel chart-panel">
+          <div class="panel-heading">
+            <div><span>Traffic trend</span><h2>Last 14 days</h2></div>
+            <span class="panel-badge">Visits</span>
+          </div>
+          <div class="bar-chart" id="bar-chart" aria-label="Bar chart of visits over the last 14 days"></div>
+        </article>
+
+        <article class="dashboard-panel">
+          <div class="panel-heading">
+            <div><span>Recent activity</span><h2>Daily totals</h2></div>
+          </div>
+          <div class="daily-list" id="daily-list">
+            <div class="empty-state">Loading visit data…</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid dashboard-grid-secondary">
+        <article class="dashboard-panel">
+          <div class="panel-heading">
+            <div><span>Content</span><h2>Top pages</h2></div>
+          </div>
+          <div class="ranking-list" id="top-pages"><div class="empty-state">No data yet.</div></div>
+        </article>
+        <article class="dashboard-panel">
+          <div class="panel-heading">
+            <div><span>Acquisition</span><h2>Top sources</h2></div>
+          </div>
+          <div class="ranking-list" id="top-sources"><div class="empty-state">No data yet.</div></div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <form class="auth-card" id="auth-form">
+      <span class="auth-icon">NB</span>
+      <p class="eyebrow">Private analytics</p>
+      <h1 id="auth-title">Open dashboard</h1>
+      <p>Enter the dashboard key configured in your Netlify environment variables.</p>
+      <label for="dashboard-key">Dashboard key</label>
+      <input id="dashboard-key" name="dashboard-key" type="password" autocomplete="current-password" required placeholder="Enter access key" />
+      <button class="button" type="submit">View analytics</button>
+      <span class="auth-error" id="auth-error" role="alert"></span>
+      <a class="text-link" href="index.html">← Back to website</a>
+    </form>
+  </div>
+</body>
+</html>
