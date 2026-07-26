@@ -1,5 +1,16 @@
 const { getStore } = require('@netlify/blobs');
 
+const getAnalyticsStore = () => {
+  const siteID = process.env.SITE_ID || process.env.NETLIFY_SITE_ID;
+  const token = process.env.NETLIFY_BLOBS_TOKEN;
+
+  if (siteID && token) {
+    return getStore({ name: 'analytics', siteID, token });
+  }
+
+  return getStore('analytics');
+};
+
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
 const isoDaysAgo = (n) => {
@@ -34,7 +45,7 @@ exports.handler = async (event) => {
   }
 
   try {
-    const store = getStore('analytics');
+    const store = getAnalyticsStore();
     const data = (await store.get('data', { type: 'json' })) || { totalVisits: 0, days: {} };
 
     const today = todayISO();
